@@ -13,6 +13,7 @@ import Container from './components/Container'
 import ExecuteFunctions from './components/ExecuteFunctions'
 import Message from './components/Message'
 import ChangeMessageState from './components/ChangeMessageState'
+import UserDetail from './components/UserDetail'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -26,6 +27,12 @@ function App() {
     console.log("Evento do componente pai");
     
   }
+
+  const people = [
+    {id: 1, nome: "Uberlandia", idade: 20, profissão: "Motorista"},
+    {id: 2, nome: "Odessa", idade: 17, profissão: "Arquiteta"},
+    {id: 3, nome: "Johannes", idade: 35, profissão: "Paleontólogo"}
+  ]
 
   const [message, setMessage] = useState("");
 
@@ -59,6 +66,10 @@ function App() {
         <ExecuteFunctions myFunction={showMessage}/>
         <Message msg = {message}/>
         <ChangeMessageState handleMessage={handleMessage}/>
+        <h2>Elegíveis a Carteira de motoristas</h2>
+        {people.map((person) => (
+          <UserDetail key={person.id} nome={person.nome} idade={person.idade} profissão={person.profissão}/>
+        ))}
       </div>
     </>
   )
